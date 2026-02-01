@@ -1,0 +1,353 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:AppTodoPro.Models"
+             xmlns:behaviors="clr-namespace:AppTodoPro.Behaviors"
+             x:Class="AppTodoPro.MainPage">
+    <Grid RowDefinitions="Auto,*">
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="{AppThemeBinding Light={StaticResource SurfaceLight}, Dark={StaticResource SurfaceDark}}" Offset="0" />
+                <GradientStop Color="{AppThemeBinding Light={StaticResource Secondary}, Dark={StaticResource CardDark}}" Offset="1" />
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Border Grid.Row="0"
+                Style="{StaticResource CardBorder}"
+                StrokeShape="RoundRectangle 0,0,18,18"
+                StrokeThickness="0"
+                Padding="20,16">
+            <Border.Shadow>
+                <Shadow Opacity="0.18" Radius="10" Offset="0,6" />
+            </Border.Shadow>
+            <VerticalStackLayout Spacing="2">
+                <Label Text="PlanningPro"
+                       Style="{StaticResource PageTitle}"
+                       SemanticProperties.HeadingLevel="Level1" />
+                <Label Text="{Binding CountLabel}"
+                       FontSize="12"
+                       TextColor="{StaticResource Gray600}" />
+                <Label Text="Gérez vos tâches comme un pro"
+                       FontSize="12"
+                       TextColor="{StaticResource Gray600}" />
+            </VerticalStackLayout>
+        </Border>
+
+        <Grid Grid.Row="1">
+            <CollectionView ItemsSource="{Binding FilteredItems}"
+                            CanReorderItems="{OnPlatform Android=false, Default={Binding CanReorder}}"
+                            ReorderCompleted="OnReorderCompleted">
+                <CollectionView.Header>
+                    <VerticalStackLayout Padding="20,0,20,20" Spacing="16">
+                        <Border Style="{StaticResource CardBorder}">
+                            <Border.Shadow>
+                                <Shadow Opacity="0.18" Radius="10" Offset="0,6" />
+                            </Border.Shadow>
+                            <VerticalStackLayout Spacing="10">
+                                <Label Text="Nouvelle tâche"
+                                       Style="{StaticResource SectionTitle}" />
+                                <Border Style="{StaticResource InputBorder}">
+                                    <Entry Placeholder="Titre de la tâche"
+                                           Text="{Binding NewTitle}"
+                                           BackgroundColor="Transparent"
+                                           ReturnType="Done"
+                                           ReturnCommand="{Binding AddCommand}">
+                                        <Entry.Behaviors>
+                                            <behaviors:FocusScaleBehavior />
+                                        </Entry.Behaviors>
+                                    </Entry>
+                                </Border>
+                                <Border Style="{StaticResource InputBorder}">
+                                    <Entry Placeholder="Tags (#urgent, #travail)"
+                                           Text="{Binding NewTags}"
+                                           BackgroundColor="Transparent">
+                                        <Entry.Behaviors>
+                                            <behaviors:FocusScaleBehavior />
+                                        </Entry.Behaviors>
+                                    </Entry>
+                                </Border>
+                                <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+                                    <Border Style="{StaticResource InputBorder}">
+                                        <Picker Title="Catégorie"
+                                                ItemsSource="{Binding CategoryOptions}"
+                                                SelectedIndex="{Binding SelectedCategoryIndex}"
+                                                BackgroundColor="Transparent">
+                                            <Picker.Behaviors>
+                                                <behaviors:FocusScaleBehavior />
+                                            </Picker.Behaviors>
+                                        </Picker>
+                                    </Border>
+                                    <Border Style="{StaticResource InputBorder}" Grid.Column="1">
+                                        <Picker Title="Priorité"
+                                                ItemsSource="{Binding PriorityOptions}"
+                                                SelectedIndex="{Binding SelectedPriorityIndex}"
+                                                BackgroundColor="Transparent">
+                                            <Picker.Behaviors>
+                                                <behaviors:FocusScaleBehavior />
+                                            </Picker.Behaviors>
+                                        </Picker>
+                                    </Border>
+                                </Grid>
+                                <Label Text="{Binding SuggestionText}"
+                                       FontSize="12"
+                                       TextColor="{StaticResource Gray600}"
+                                       IsVisible="{Binding HasSuggestion}" />
+                                <HorizontalStackLayout Spacing="10">
+                                    <CheckBox IsChecked="{Binding HasDueDate}" />
+                                    <Label Text="Définir une échéance"
+                                           VerticalOptions="Center" />
+                                </HorizontalStackLayout>
+                                <Border Style="{StaticResource InputBorder}">
+                                    <DatePicker Date="{Binding DueDate}"
+                                                IsEnabled="{Binding HasDueDate}"
+                                                BackgroundColor="Transparent">
+                                        <DatePicker.Behaviors>
+                                            <behaviors:FocusScaleBehavior />
+                                        </DatePicker.Behaviors>
+                                    </DatePicker>
+                                </Border>
+                                <HorizontalStackLayout Spacing="10">
+                                    <Button Text="Ajouter"
+                                            Style="{StaticResource PrimaryButton}"
+                                            Command="{Binding AddCommand}"
+                                            IsEnabled="{Binding IsNotBusy}" />
+                                    <Button Text="Ajouter catégorie"
+                                            Style="{StaticResource SecondaryButton}"
+                                            Command="{Binding AddCategoryCommand}" />
+                                </HorizontalStackLayout>
+                            </VerticalStackLayout>
+                        </Border>
+
+                        <Border Style="{StaticResource InputBorder}">
+                            <SearchBar Placeholder="Rechercher une tâche"
+                                       Text="{Binding SearchText}"
+                                       BackgroundColor="Transparent">
+                                <SearchBar.Behaviors>
+                                    <behaviors:FocusScaleBehavior />
+                                </SearchBar.Behaviors>
+                            </SearchBar>
+                        </Border>
+
+                        <Border Style="{StaticResource CardBorder}">
+                            <VerticalStackLayout Spacing="10">
+                                <Label Text="Filtres &amp; tri"
+                                       Style="{StaticResource SectionTitle}" />
+                                <Grid ColumnDefinitions="*,*,*" ColumnSpacing="10">
+                                    <Border Style="{StaticResource InputBorder}">
+                                        <Picker Title="Catégorie"
+                                                ItemsSource="{Binding FilterCategoryOptions}"
+                                                SelectedIndex="{Binding FilterCategoryIndex}"
+                                                BackgroundColor="Transparent">
+                                            <Picker.Behaviors>
+                                                <behaviors:FocusScaleBehavior />
+                                            </Picker.Behaviors>
+                                        </Picker>
+                                    </Border>
+                                    <Border Style="{StaticResource InputBorder}" Grid.Column="1">
+                                        <Picker Title="Priorité"
+                                                ItemsSource="{Binding FilterPriorityOptions}"
+                                                SelectedIndex="{Binding FilterPriorityIndex}"
+                                                BackgroundColor="Transparent">
+                                            <Picker.Behaviors>
+                                                <behaviors:FocusScaleBehavior />
+                                            </Picker.Behaviors>
+                                        </Picker>
+                                    </Border>
+                                    <Border Style="{StaticResource InputBorder}" Grid.Column="2">
+                                        <Picker Title="Statut"
+                                                ItemsSource="{Binding FilterStatusOptions}"
+                                                SelectedIndex="{Binding FilterStatusIndex}"
+                                                BackgroundColor="Transparent">
+                                            <Picker.Behaviors>
+                                                <behaviors:FocusScaleBehavior />
+                                            </Picker.Behaviors>
+                                        </Picker>
+                                    </Border>
+                                </Grid>
+                                <Border Style="{StaticResource InputBorder}">
+                                    <Picker Title="Tri"
+                                            ItemsSource="{Binding SortOptions}"
+                                            SelectedIndex="{Binding SortOptionIndex}"
+                                            BackgroundColor="Transparent">
+                                        <Picker.Behaviors>
+                                            <behaviors:FocusScaleBehavior />
+                                        </Picker.Behaviors>
+                                    </Picker>
+                                </Border>
+                                <Border Style="{StaticResource InputBorder}">
+                                    <Entry Placeholder="Filtrer par tags (#urgent #examen)"
+                                           Text="{Binding TagFilterText}"
+                                           BackgroundColor="Transparent">
+                                        <Entry.Behaviors>
+                                            <behaviors:FocusScaleBehavior />
+                                        </Entry.Behaviors>
+                                    </Entry>
+                                </Border>
+                            </VerticalStackLayout>
+                        </Border>
+
+                        <ActivityIndicator IsRunning="{Binding IsBusy}"
+                                           IsVisible="{Binding IsBusy}" />
+                    </VerticalStackLayout>
+                </CollectionView.Header>
+                <CollectionView.EmptyView>
+                    <VerticalStackLayout Padding="20" Spacing="10" HorizontalOptions="Center">
+                        <Image Source="dotnet_bot.png" HeightRequest="120" Opacity="0.6" />
+                        <Label Text="Aucune tâche pour le moment."
+                               TextColor="{StaticResource Gray600}"
+                               HorizontalOptions="Center" />
+        </VerticalStackLayout>
+                </CollectionView.EmptyView>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:TodoItem">
+                        <SwipeView>
+                            <SwipeView.LeftItems>
+                                <SwipeItems Mode="Execute">
+                                    <SwipeItem Text="Terminer"
+                                               BackgroundColor="{StaticResource Green500}"
+                                               Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.MarkDoneCommand}"
+                                               CommandParameter="{Binding .}" />
+                                </SwipeItems>
+                            </SwipeView.LeftItems>
+                            <SwipeView.RightItems>
+                                <SwipeItems Mode="Execute">
+                                    <SwipeItem Text="Supprimer"
+                                               BackgroundColor="{StaticResource Red500}"
+                                               Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.DeleteCommand}"
+                                               CommandParameter="{Binding .}" />
+                                </SwipeItems>
+                            </SwipeView.RightItems>
+                            <Border x:Name="TaskCard"
+                                    Style="{StaticResource CardBorder}"
+                                    StrokeShape="RoundRectangle 18"
+                                    StrokeThickness="1">
+                                <Border.Shadow>
+                                    <Shadow Opacity="0.16" Radius="8" Offset="0,4" />
+                                </Border.Shadow>
+                                <Grid ColumnDefinitions="8,Auto,*" ColumnSpacing="12">
+                                    <BoxView Grid.Column="0" CornerRadius="4">
+                                        <BoxView.Triggers>
+                                            <DataTrigger TargetType="BoxView" Binding="{Binding Priority}" Value="0">
+                                                <Setter Property="Color" Value="{StaticResource Green500}" />
+                                            </DataTrigger>
+                                            <DataTrigger TargetType="BoxView" Binding="{Binding Priority}" Value="1">
+                                                <Setter Property="Color" Value="{StaticResource Orange500}" />
+                                            </DataTrigger>
+                                            <DataTrigger TargetType="BoxView" Binding="{Binding Priority}" Value="2">
+                                                <Setter Property="Color" Value="{StaticResource Red500}" />
+                                            </DataTrigger>
+                                        </BoxView.Triggers>
+                                    </BoxView>
+                                    <CheckBox Grid.Column="1"
+                                              IsChecked="{Binding IsDone}"
+                                              VerticalOptions="Center"
+                                              CheckedChanged="OnTaskCheckedChanged">
+                                        <CheckBox.Triggers>
+                                            <DataTrigger TargetType="CheckBox" Binding="{Binding IsDone}" Value="True">
+                                                <Setter Property="Scale" Value="1.1" />
+                                            </DataTrigger>
+                                        </CheckBox.Triggers>
+                                    </CheckBox>
+                                    <VerticalStackLayout Grid.Column="2" Spacing="6">
+                                        <Label Text="{Binding Title}"
+                                               FontSize="16"
+                                               VerticalOptions="Center"
+                                               Opacity="1">
+                                            <Label.Triggers>
+                                                <DataTrigger TargetType="Label" Binding="{Binding IsDone}" Value="True">
+                                                    <Setter Property="Opacity" Value="0.5" />
+                                                </DataTrigger>
+                                                <DataTrigger TargetType="Label" Binding="{Binding IsDone}" Value="True">
+                                                    <Setter Property="TextDecorations" Value="Strikethrough" />
+                                                    <Setter Property="TextColor" Value="{StaticResource Gray600}" />
+                                                </DataTrigger>
+                                            </Label.Triggers>
+                                        </Label>
+                                        <HorizontalStackLayout Spacing="8">
+                                            <Border Style="{StaticResource Badge}"
+                                                    BackgroundColor="{Binding Category, Converter={StaticResource CategoryColorConverter}}">
+                                                <HorizontalStackLayout Spacing="4">
+                                                    <Image Source="{Binding Category, Converter={StaticResource CategoryIconConverter}}"
+                                                           HeightRequest="12"
+                                                           WidthRequest="12" />
+                                                    <Label Text="{Binding Category}"
+                                                           FontSize="12"
+                                                           TextColor="{StaticResource White}" />
+                                                </HorizontalStackLayout>
+                                            </Border>
+                                            <Border Style="{StaticResource Badge}">
+                                                <Border.Triggers>
+                                                    <DataTrigger TargetType="Border" Binding="{Binding Priority}" Value="0">
+                                                        <Setter Property="BackgroundColor" Value="{StaticResource Green500}" />
+                                                    </DataTrigger>
+                                                    <DataTrigger TargetType="Border" Binding="{Binding Priority}" Value="1">
+                                                        <Setter Property="BackgroundColor" Value="{StaticResource Orange500}" />
+                                                    </DataTrigger>
+                                                    <DataTrigger TargetType="Border" Binding="{Binding Priority}" Value="2">
+                                                        <Setter Property="BackgroundColor" Value="{StaticResource Red500}" />
+                                                    </DataTrigger>
+                                                </Border.Triggers>
+                                                <HorizontalStackLayout Spacing="4">
+                                                    <Image Source="{Binding Priority, Converter={StaticResource PriorityIconConverter}}"
+                                                           HeightRequest="12"
+                                                           WidthRequest="12" />
+                                                    <Label Text="{Binding PriorityLabel}"
+                                                           FontSize="12"
+                                                           TextColor="{StaticResource White}" />
+                                                </HorizontalStackLayout>
+                                            </Border>
+                                        </HorizontalStackLayout>
+                                        <HorizontalStackLayout Spacing="6"
+                                                              IsVisible="{Binding HasTags}"
+                                                              BindableLayout.ItemsSource="{Binding Tags}">
+                                            <BindableLayout.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Border Style="{StaticResource Badge}"
+                                                            BackgroundColor="{StaticResource Gray200}">
+                                                        <Label Text="{Binding .}"
+                                                               FontSize="12"
+                                                               TextColor="{StaticResource Gray900}" />
+                                                    </Border>
+                                                </DataTemplate>
+                                            </BindableLayout.ItemTemplate>
+                                        </HorizontalStackLayout>
+                                        <Label Text="{Binding SubtaskLabel}"
+                                               FontSize="12"
+                                               TextColor="{StaticResource Gray600}"
+                                               IsVisible="{Binding HasSubtasks}" />
+                                        <ProgressBar Progress="{Binding SubtaskProgress}"
+                                                     IsVisible="{Binding HasSubtasks}" />
+                                        <Label Text="{Binding DueLabel}"
+                                               FontSize="12"
+                                               TextColor="{StaticResource Gray600}" />
+                                        <Label Text="{Binding CreatedLabel}"
+                                               FontSize="12"
+                                               TextColor="{StaticResource Gray600}" />
+                                        <HorizontalStackLayout Spacing="10">
+                                            <Button Text="Modifier"
+                                                    Style="{StaticResource SecondaryButton}"
+                                                    Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.EditCommand}"
+                                                    CommandParameter="{Binding .}" />
+                                            <Button Text="Supprimer"
+                                                    Style="{StaticResource SecondaryButton}"
+                                                    Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.DeleteCommand}"
+                                                    CommandParameter="{Binding .}" />
+                                        </HorizontalStackLayout>
+        </VerticalStackLayout>
+                                </Grid>
+                            </Border>
+                        </SwipeView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+                <CollectionView.Footer>
+                    <VerticalStackLayout Padding="20,10,20,30" Spacing="10">
+                        <Button Text="Effacer les tâches terminées"
+                                Style="{StaticResource SecondaryButton}"
+                                Command="{Binding ClearDoneCommand}"
+                                IsEnabled="{Binding IsNotBusy}" />
+                    </VerticalStackLayout>
+                </CollectionView.Footer>
+            </CollectionView>
+        </Grid>
+    </Grid>
+</ContentPage>

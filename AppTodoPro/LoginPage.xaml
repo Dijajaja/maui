@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:behaviors="clr-namespace:AppTodoPro.Behaviors"
+             x:Class="AppTodoPro.LoginPage"
+             Title="Connexion">
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                <GradientStop Color="{StaticResource SurfaceLight}" Offset="0.0" />
+                <GradientStop Color="{StaticResource Secondary}" Offset="1.0" />
+            </LinearGradientBrush>
+        </Grid.Background>
+        <ScrollView>
+            <VerticalStackLayout Padding="24" Spacing="16">
+                <VerticalStackLayout Spacing="10" HorizontalOptions="Center">
+                    <Border BackgroundColor="{StaticResource White}"
+                            StrokeThickness="0"
+                            StrokeShape="RoundRectangle 24"
+                            Padding="12">
+                        <Image Source="dotnet_bot.png"
+                               HeightRequest="44"
+                               WidthRequest="44" />
+                    </Border>
+                    <Label Text="Bienvenue"
+                           Style="{StaticResource PageTitle}"
+                           HorizontalOptions="Center" />
+                    <Label Text="App Todo Pro"
+                           FontSize="14"
+                           TextColor="{StaticResource Gray600}"
+                           HorizontalOptions="Center" />
+                    <Label Text="Gérez vos tâches en toute simplicité"
+                           FontSize="12"
+                           TextColor="{StaticResource Gray600}"
+                           HorizontalOptions="Center" />
+                </VerticalStackLayout>
+
+                <Border Style="{StaticResource CardBorder}">
+                    <VerticalStackLayout Spacing="14">
+                        <Grid ColumnDefinitions="*,*" ColumnSpacing="6">
+                            <Button Text="Connexion"
+                                    Style="{StaticResource SecondaryButton}"
+                                    Command="{Binding SetLoginModeCommand}">
+                                <Button.Triggers>
+                                    <DataTrigger TargetType="Button" Binding="{Binding IsRegisterMode}" Value="False">
+                                        <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
+                                        <Setter Property="TextColor" Value="{StaticResource White}" />
+                                    </DataTrigger>
+                                </Button.Triggers>
+                            </Button>
+                            <Button Text="Inscription"
+                                    Grid.Column="1"
+                                    Style="{StaticResource SecondaryButton}"
+                                    Command="{Binding SetRegisterModeCommand}">
+                                <Button.Triggers>
+                                    <DataTrigger TargetType="Button" Binding="{Binding IsRegisterMode}" Value="True">
+                                        <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
+                                        <Setter Property="TextColor" Value="{StaticResource White}" />
+                                    </DataTrigger>
+                                </Button.Triggers>
+                            </Button>
+                        </Grid>
+
+                        <VerticalStackLayout Spacing="10">
+                            <Border Style="{StaticResource InputBorder}"
+                                    IsVisible="{Binding IsRegisterMode}">
+                                <Entry Placeholder="Nom complet"
+                                       Text="{Binding Name}"
+                                       ReturnType="Next"
+                                       ClearButtonVisibility="WhileEditing"
+                                       TextColor="{OnPlatform Android={StaticResource Black}, Default={AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}}"
+                                       PlaceholderColor="{OnPlatform Android={StaticResource Gray500}, Default={AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray400}}}"
+                                       BackgroundColor="{OnPlatform Android={StaticResource White}, Default=Transparent}">
+                                    <Entry.Behaviors>
+                                        <behaviors:FocusScaleBehavior />
+                                    </Entry.Behaviors>
+                                </Entry>
+                            </Border>
+                            <Label Text="{Binding NameError}"
+                                   FontSize="12"
+                                   TextColor="{StaticResource Red500}"
+                                   IsVisible="{Binding HasNameError}" />
+                            <Border Style="{StaticResource InputBorder}">
+                                <Entry x:Name="EmailEntry"
+                                       Placeholder="Email"
+                                       Keyboard="Email"
+                                       Text="{Binding Email}"
+                                       ReturnType="Next"
+                                       ClearButtonVisibility="WhileEditing"
+                                       IsSpellCheckEnabled="False"
+                                       IsTextPredictionEnabled="False"
+                                       TextColor="{OnPlatform Android={StaticResource Black}, Default={AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}}"
+                                       PlaceholderColor="{OnPlatform Android={StaticResource Gray500}, Default={AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray400}}}"
+                                       BackgroundColor="{OnPlatform Android={StaticResource White}, Default=Transparent}">
+                                    <Entry.Behaviors>
+                                        <behaviors:FocusScaleBehavior />
+                                    </Entry.Behaviors>
+                                </Entry>
+                            </Border>
+                            <Label Text="{Binding EmailError}"
+                                   FontSize="12"
+                                   TextColor="{StaticResource Red500}"
+                                   IsVisible="{Binding HasEmailError}" />
+
+                            <Border Style="{StaticResource InputBorder}">
+                                <Entry x:Name="PasswordEntry"
+                                       Placeholder="Mot de passe"
+                                       IsPassword="{Binding IsPasswordHidden}"
+                                       Text="{Binding Password}"
+                                       ReturnType="Done"
+                                       ReturnCommand="{Binding SubmitCommand}"
+                                       ClearButtonVisibility="WhileEditing"
+                                       IsSpellCheckEnabled="False"
+                                       IsTextPredictionEnabled="False"
+                                       TextColor="{OnPlatform Android={StaticResource Black}, Default={AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}}"
+                                       PlaceholderColor="{OnPlatform Android={StaticResource Gray500}, Default={AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray400}}}"
+                                       BackgroundColor="{OnPlatform Android={StaticResource White}, Default=Transparent}">
+                                    <Entry.Behaviors>
+                                        <behaviors:FocusScaleBehavior />
+                                    </Entry.Behaviors>
+                                </Entry>
+                            </Border>
+                            <Label Text="{Binding PasswordError}"
+                                   FontSize="12"
+                                   TextColor="{StaticResource Red500}"
+                                   IsVisible="{Binding HasPasswordError}" />
+                            <Label Text="{Binding PasswordStrengthLabel}"
+                                   FontSize="12"
+                                   TextColor="{Binding PasswordStrengthColor}"
+                                   IsVisible="{Binding HasPasswordStrength}" />
+                            <ProgressBar Progress="{Binding PasswordStrengthRatio}"
+                                         ProgressColor="{Binding PasswordStrengthColor}"
+                                         IsVisible="{Binding HasPasswordStrength}" />
+
+                            <Border Style="{StaticResource InputBorder}"
+                                    IsVisible="{Binding IsRegisterMode}">
+                                <Entry Placeholder="Confirmer le mot de passe"
+                                       IsPassword="{Binding IsPasswordHidden}"
+                                       Text="{Binding ConfirmPassword}"
+                                       ReturnType="Done"
+                                       ReturnCommand="{Binding SubmitCommand}"
+                                       ClearButtonVisibility="WhileEditing"
+                                       IsSpellCheckEnabled="False"
+                                       IsTextPredictionEnabled="False"
+                                       TextColor="{OnPlatform Android={StaticResource Black}, Default={AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}}"
+                                       PlaceholderColor="{OnPlatform Android={StaticResource Gray500}, Default={AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray400}}}"
+                                       BackgroundColor="{OnPlatform Android={StaticResource White}, Default=Transparent}">
+                                    <Entry.Behaviors>
+                                        <behaviors:FocusScaleBehavior />
+                                    </Entry.Behaviors>
+                                </Entry>
+                            </Border>
+                            <Label Text="{Binding ConfirmPasswordError}"
+                                   FontSize="12"
+                                   TextColor="{StaticResource Red500}"
+                                   IsVisible="{Binding HasConfirmPasswordError}" />
+
+                            <HorizontalStackLayout Spacing="8">
+                                <CheckBox IsChecked="{Binding ShowPassword}" />
+                                <Label Text="Voir le mot de passe"
+                                       VerticalOptions="Center" />
+                            </HorizontalStackLayout>
+                        </VerticalStackLayout>
+
+                        <Label Text="{Binding ErrorMessage}"
+                               TextColor="{StaticResource Red500}"
+                               IsVisible="{Binding HasError}" />
+
+                        <ActivityIndicator IsRunning="{Binding IsBusy}"
+                                           IsVisible="{Binding IsBusy}" />
+
+                        <Label Text="{Binding StatusMessage}"
+                               FontSize="12"
+                               TextColor="{StaticResource Gray600}"
+                               IsVisible="{Binding HasStatusMessage}"
+                               HorizontalOptions="Center" />
+
+                        <Button Text="{Binding PrimaryButtonText}"
+                                Style="{StaticResource PrimaryButton}"
+                                Command="{Binding SubmitCommand}" />
+                    </VerticalStackLayout>
+                </Border>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

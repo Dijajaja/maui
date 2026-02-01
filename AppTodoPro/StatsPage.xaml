@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:AppTodoPro.Views"
+             x:Class="AppTodoPro.StatsPage"
+             Title="Statistiques">
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="{AppThemeBinding Light={StaticResource SurfaceLight}, Dark={StaticResource SurfaceDark}}" Offset="0" />
+                <GradientStop Color="{AppThemeBinding Light={StaticResource Secondary}, Dark={StaticResource CardDark}}" Offset="1" />
+            </LinearGradientBrush>
+        </Grid.Background>
+        <ScrollView>
+            <VerticalStackLayout Padding="20" Spacing="16">
+            <Label Text="Tableau de bord"
+                   Style="{StaticResource PageTitle}" />
+
+            <Border Style="{StaticResource CardBorder}">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Progression"
+                           Style="{StaticResource SectionTitle}" />
+                    <Label Text="{Binding DoneCount} terminées / {Binding TotalCount} au total"
+                           FontSize="12"
+                           TextColor="{StaticResource Gray600}" />
+                    <ProgressBar Progress="{Binding DoneRatio}" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                <Border Style="{StaticResource CardBorder}">
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="En cours"
+                               Style="{StaticResource SectionTitle}" />
+                        <Label Text="{Binding PendingCount}"
+                               FontSize="20"
+                               FontAttributes="Bold" />
+                    </VerticalStackLayout>
+                </Border>
+                <Border Style="{StaticResource CardBorder}" Grid.Column="1">
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="Terminées"
+                               Style="{StaticResource SectionTitle}" />
+                        <Label Text="{Binding DoneCount}"
+                               FontSize="20"
+                               FontAttributes="Bold" />
+                    </VerticalStackLayout>
+                </Border>
+            </Grid>
+
+            <Border Style="{StaticResource CardBorder}">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Priorités"
+                           Style="{StaticResource SectionTitle}" />
+                    <Grid ColumnDefinitions="Auto,*" ColumnSpacing="16">
+                        <views:PriorityPieChartView WidthRequest="140"
+                                                    HeightRequest="140"
+                                                    HighCount="{Binding HighCount}"
+                                                    MediumCount="{Binding MediumCount}"
+                                                    LowCount="{Binding LowCount}" />
+                        <VerticalStackLayout Grid.Column="1" Spacing="10">
+                            <HorizontalStackLayout Spacing="8">
+                                <BoxView WidthRequest="10" HeightRequest="10" Color="{StaticResource Red500}" />
+                                <Label Text="Haute" />
+                                <Label Text="{Binding HighCount}"
+                                       TextColor="{StaticResource Gray600}" />
+                            </HorizontalStackLayout>
+                            <HorizontalStackLayout Spacing="8">
+                                <BoxView WidthRequest="10" HeightRequest="10" Color="{StaticResource Orange500}" />
+                                <Label Text="Normale" />
+                                <Label Text="{Binding MediumCount}"
+                                       TextColor="{StaticResource Gray600}" />
+                            </HorizontalStackLayout>
+                            <HorizontalStackLayout Spacing="8">
+                                <BoxView WidthRequest="10" HeightRequest="10" Color="{StaticResource Green500}" />
+                                <Label Text="Basse" />
+                                <Label Text="{Binding LowCount}"
+                                       TextColor="{StaticResource Gray600}" />
+                            </HorizontalStackLayout>
+                        </VerticalStackLayout>
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Style="{StaticResource CardBorder}">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Catégories"
+                           Style="{StaticResource SectionTitle}" />
+                    <CollectionView ItemsSource="{Binding CategoryStats}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid ColumnDefinitions="Auto,*,Auto" Padding="4,2" ColumnSpacing="10">
+                                    <BoxView WidthRequest="6" HeightRequest="18" CornerRadius="3"
+                                             Color="{Binding Label, Converter={StaticResource CategoryColorConverter}}" />
+                                    <Label Text="{Binding Label}"
+                                           Grid.Column="1" />
+                                    <Label Text="{Binding Count}"
+                                           Grid.Column="2"
+                                           TextColor="{StaticResource Gray600}" />
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Style="{StaticResource CardBorder}">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Tendance 7 jours"
+                           Style="{StaticResource SectionTitle}" />
+                    <CollectionView ItemsSource="{Binding WeeklyTrend}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid ColumnDefinitions="Auto,*" ColumnSpacing="10" Padding="4,2">
+                                    <Label Text="{Binding Label}"
+                                           FontSize="12"
+                                           TextColor="{StaticResource Gray600}" />
+                                    <Grid Grid.Column="1" HeightRequest="12" BackgroundColor="{StaticResource Gray200}" HorizontalOptions="Fill">
+                                        <Border HeightRequest="12"
+                                                HorizontalOptions="Start"
+                                                WidthRequest="{Binding Ratio, Converter={StaticResource RatioToWidthConverter}, ConverterParameter=200}">
+                                            <Border.Background>
+                                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                                    <GradientStop Color="{StaticResource Primary}" Offset="0.0" />
+                                                    <GradientStop Color="{StaticResource SecondaryDarkText}" Offset="1.0" />
+                                                </LinearGradientBrush>
+                                            </Border.Background>
+                                            <Label Text="{Binding Count}"
+                                                   FontSize="10"
+                                                   TextColor="{StaticResource White}"
+                                                   HorizontalOptions="Center"
+                                                   VerticalOptions="Center" />
+                                        </Border>
+                                    </Grid>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+            </Border>
+
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppTodoPro.ProfilePage"
+             Title="Profil">
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="{AppThemeBinding Light={StaticResource SurfaceLight}, Dark={StaticResource SurfaceDark}}" Offset="0" />
+                <GradientStop Color="{AppThemeBinding Light={StaticResource Secondary}, Dark={StaticResource CardDark}}" Offset="1" />
+            </LinearGradientBrush>
+        </Grid.Background>
+        <ScrollView>
+            <VerticalStackLayout Padding="20" Spacing="16">
+                <Label Text="Profil"
+                       Style="{StaticResource PageTitle}" />
+                <Label Text="{Binding LiveDisplayName, StringFormat='Pseudo : {0}'}"
+                       FontSize="14"
+                       TextColor="{StaticResource Gray600}" />
+
+        <Border Style="{StaticResource CardBorder}">
+            <VerticalStackLayout Spacing="6">
+                <Label Text="Email"
+                       Style="{StaticResource SectionTitle}" />
+                <Label Text="{Binding Email}"
+                       FontSize="14"
+                       TextColor="{StaticResource Gray600}" />
+            </VerticalStackLayout>
+        </Border>
+
+        <Border Style="{StaticResource CardBorder}">
+            <VerticalStackLayout Spacing="10">
+                <Label Text="Pseudo"
+                       Style="{StaticResource SectionTitle}" />
+                <Border Style="{StaticResource InputBorder}">
+                    <Entry Placeholder="Nom complet"
+                           Text="{Binding EditableName}"
+                           ClearButtonVisibility="WhileEditing"
+                           BackgroundColor="Transparent" />
+                </Border>
+                <Label Text="{Binding NameError}"
+                       FontSize="12"
+                       TextColor="{StaticResource Red500}"
+                       IsVisible="{Binding HasNameError}" />
+                <Button Text="Enregistrer le pseudo"
+                        Style="{StaticResource SecondaryButton}"
+                        Command="{Binding SaveDisplayNameCommand}"
+                        IsEnabled="{Binding IsNotBusy}" />
+            </VerticalStackLayout>
+        </Border>
+
+        <Border Style="{StaticResource CardBorder}">
+            <VerticalStackLayout Spacing="10">
+                <Label Text="Réglages"
+                       Style="{StaticResource SectionTitle}" />
+                <HorizontalStackLayout Spacing="10">
+                    <Switch IsToggled="{Binding IsDarkMode}" />
+                    <Label Text="Mode sombre"
+                           VerticalOptions="Center" />
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+        </Border>
+
+        <Border Style="{StaticResource CardBorder}">
+            <VerticalStackLayout Spacing="8">
+                <Label Text="À propos"
+                       Style="{StaticResource SectionTitle}" />
+                <Label Text="PlanningPro vous aide à planifier vos journées, suivre vos priorités et garder le contrôle, le tout avec une interface simple, fluide et agréable."
+                       FontSize="13"
+                       TextColor="{StaticResource Gray600}" />
+            </VerticalStackLayout>
+        </Border>
+
+                <Button Text="Se déconnecter"
+                        Style="{StaticResource SecondaryButton}"
+                        Command="{Binding SignOutCommand}" />
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

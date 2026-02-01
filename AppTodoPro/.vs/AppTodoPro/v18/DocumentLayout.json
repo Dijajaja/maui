@@ -1,0 +1,160 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\PC\\Desktop\\dot\\AppTodoPro\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{79643D47-5DC1-D9EB-13C7-B34AE10EB6F9}|AppTodoPro.csproj|c:\\users\\pc\\desktop\\dot\\apptodopro\\statspage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{79643D47-5DC1-D9EB-13C7-B34AE10EB6F9}|AppTodoPro.csproj|solutionrelative:statspage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{79643D47-5DC1-D9EB-13C7-B34AE10EB6F9}|AppTodoPro.csproj|c:\\users\\pc\\desktop\\dot\\apptodopro\\mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{79643D47-5DC1-D9EB-13C7-B34AE10EB6F9}|AppTodoPro.csproj|solutionrelative:mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{79643D47-5DC1-D9EB-13C7-B34AE10EB6F9}|AppTodoPro.csproj|c:\\users\\pc\\desktop\\dot\\apptodopro\\loginpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{79643D47-5DC1-D9EB-13C7-B34AE10EB6F9}|AppTodoPro.csproj|solutionrelative:loginpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{79643D47-5DC1-D9EB-13C7-B34AE10EB6F9}|AppTodoPro.csproj|c:\\users\\pc\\desktop\\dot\\apptodopro\\services\\todorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{79643D47-5DC1-D9EB-13C7-B34AE10EB6F9}|AppTodoPro.csproj|solutionrelative:services\\todorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{79643D47-5DC1-D9EB-13C7-B34AE10EB6F9}|AppTodoPro.csproj|c:\\users\\pc\\desktop\\dot\\apptodopro\\edittaskpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{79643D47-5DC1-D9EB-13C7-B34AE10EB6F9}|AppTodoPro.csproj|solutionrelative:edittaskpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{79643D47-5DC1-D9EB-13C7-B34AE10EB6F9}|AppTodoPro.csproj|c:\\users\\pc\\desktop\\dot\\apptodopro\\appshell.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{79643D47-5DC1-D9EB-13C7-B34AE10EB6F9}|AppTodoPro.csproj|solutionrelative:appshell.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{79643D47-5DC1-D9EB-13C7-B34AE10EB6F9}|AppTodoPro.csproj|c:\\users\\pc\\desktop\\dot\\apptodopro\\views\\prioritypiechartview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{79643D47-5DC1-D9EB-13C7-B34AE10EB6F9}|AppTodoPro.csproj|solutionrelative:views\\prioritypiechartview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{79643D47-5DC1-D9EB-13C7-B34AE10EB6F9}|AppTodoPro.csproj|c:\\users\\pc\\desktop\\dot\\apptodopro\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{79643D47-5DC1-D9EB-13C7-B34AE10EB6F9}|AppTodoPro.csproj|solutionrelative:app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "StatsPage.xaml",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\dot\\AppTodoPro\\StatsPage.xaml",
+              "RelativeDocumentMoniker": "StatsPage.xaml",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\dot\\AppTodoPro\\StatsPage.xaml",
+              "RelativeToolTip": "StatsPage.xaml",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAqwEYAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-01-30T11:30:46.742Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "TodoRepository.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\dot\\AppTodoPro\\Services\\TodoRepository.cs",
+              "RelativeDocumentMoniker": "Services\\TodoRepository.cs",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\dot\\AppTodoPro\\Services\\TodoRepository.cs",
+              "RelativeToolTip": "Services\\TodoRepository.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-30T11:23:05.245Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "LoginPage.xaml",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\dot\\AppTodoPro\\LoginPage.xaml",
+              "RelativeDocumentMoniker": "LoginPage.xaml",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\dot\\AppTodoPro\\LoginPage.xaml",
+              "RelativeToolTip": "LoginPage.xaml",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAE8AAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-01-30T11:10:16.682Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "EditTaskPage.xaml",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\dot\\AppTodoPro\\EditTaskPage.xaml",
+              "RelativeDocumentMoniker": "EditTaskPage.xaml",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\dot\\AppTodoPro\\EditTaskPage.xaml",
+              "RelativeToolTip": "EditTaskPage.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-01-30T11:08:41.19Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "PriorityPieChartView.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\dot\\AppTodoPro\\Views\\PriorityPieChartView.cs",
+              "RelativeDocumentMoniker": "Views\\PriorityPieChartView.cs",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\dot\\AppTodoPro\\Views\\PriorityPieChartView.cs",
+              "RelativeToolTip": "Views\\PriorityPieChartView.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-30T11:08:22.326Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "AppShell.xaml",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\dot\\AppTodoPro\\AppShell.xaml",
+              "RelativeDocumentMoniker": "AppShell.xaml",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\dot\\AppTodoPro\\AppShell.xaml",
+              "RelativeToolTip": "AppShell.xaml",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAABUAAAA8AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-01-29T21:31:04.514Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MainPage.xaml",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\dot\\AppTodoPro\\MainPage.xaml",
+              "RelativeDocumentMoniker": "MainPage.xaml",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\dot\\AppTodoPro\\MainPage.xaml",
+              "RelativeToolTip": "MainPage.xaml",
+              "ViewState": "AgIAAH4AAAAAAAAAAAAAAAkAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-01-22T21:58:38.069Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "App.xaml",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\dot\\AppTodoPro\\App.xaml",
+              "RelativeDocumentMoniker": "App.xaml",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\dot\\AppTodoPro\\App.xaml",
+              "RelativeToolTip": "App.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-01-22T21:57:36.464Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

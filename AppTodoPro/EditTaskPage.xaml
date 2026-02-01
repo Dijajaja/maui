@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppTodoPro.EditTaskPage"
+             Title="Modifier">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="16">
+            <Label Text="Modifier la tâche"
+                   Style="{StaticResource PageTitle}" />
+
+            <Border Style="{StaticResource CardBorder}">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Titre"
+                           Style="{StaticResource SectionTitle}" />
+                    <Entry Placeholder="Titre"
+                           Text="{Binding Title}" />
+
+                    <Label Text="Tags"
+                           Style="{StaticResource SectionTitle}" />
+                    <Entry Placeholder="#urgent, #travail"
+                           Text="{Binding TagsRaw}" />
+
+                    <Label Text="Catégorie"
+                           Style="{StaticResource SectionTitle}" />
+                    <Picker ItemsSource="{Binding CategoryOptions}"
+                            SelectedIndex="{Binding SelectedCategoryIndex}" />
+
+                    <Label Text="Priorité"
+                           Style="{StaticResource SectionTitle}" />
+                    <Picker ItemsSource="{Binding PriorityOptions}"
+                            SelectedIndex="{Binding SelectedPriorityIndex}" />
+
+                    <HorizontalStackLayout Spacing="10">
+                        <CheckBox IsChecked="{Binding HasDueDate}" />
+                        <Label Text="Définir une échéance"
+                               VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+                    <DatePicker Date="{Binding DueDate}"
+                                IsEnabled="{Binding HasDueDate}" />
+
+                    <HorizontalStackLayout Spacing="10">
+                        <CheckBox IsChecked="{Binding IsDone}" />
+                        <Label Text="Marquer comme terminée"
+                               VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+
+                    <Label Text="Sous-tâches"
+                           Style="{StaticResource SectionTitle}" />
+                    <CollectionView ItemsSource="{Binding Subtasks}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="10" Padding="4,2">
+                                    <CheckBox IsChecked="{Binding IsDone}" />
+                                    <Label Text="{Binding Title}"
+                                           Grid.Column="1"
+                                           VerticalOptions="Center" />
+                                    <Button Text="✕"
+                                            Grid.Column="2"
+                                            Style="{StaticResource SecondaryButton}"
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.RemoveSubtaskCommand}"
+                                            CommandParameter="{Binding .}" />
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                    <Button Text="Ajouter une sous-tâche"
+                            Style="{StaticResource SecondaryButton}"
+                            Command="{Binding AddSubtaskCommand}" />
+                </VerticalStackLayout>
+            </Border>
+
+            <HorizontalStackLayout Spacing="10">
+                <Button Text="Enregistrer"
+                        Style="{StaticResource PrimaryButton}"
+                        Command="{Binding SaveCommand}" />
+                <Button Text="Annuler"
+                        Style="{StaticResource SecondaryButton}"
+                        Command="{Binding CancelCommand}" />
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

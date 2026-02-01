@@ -1,0 +1,49 @@
+## .NET / Visual Studio
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.userprefs
+*.rsuser
+*.pdb
+*.cache
+*.log
+*.tmp
+*.bak
+*.swp
+*.sdf
+*.opensdf
+*.vspscc
+*.vssscc
+.vs/
+
+## Build outputs
+Debug/
+Release/
+x64/
+x86/
+AnyCPU/
+
+## NuGet
+packages/
+*.nupkg
+*.snupkg
+*.nuget.props
+*.nuget.targets
+
+## Rider / ReSharper
+.idea/
+_ReSharper*/
+*.[Rr]e[Ss]harper
+
+## VS Code
+.vscode/
+
+## OS files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
